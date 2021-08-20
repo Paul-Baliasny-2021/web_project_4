@@ -7,4 +7,4 @@
 * The project will be further developed to provide some more realistic interactivity such as adding place cards and their description, liking other users' posts etc.
 
 url:
-# web_project_4
+https://paul-baliasny-2021.github.io/web_project_4/
