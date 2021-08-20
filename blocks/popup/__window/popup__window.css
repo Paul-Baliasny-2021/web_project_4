@@ -1,0 +1,17 @@
+.popup__window {
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    min-width: 430px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+@media screen and (max-width: 720px) {
+    .popup__window {
+        min-width: 88.125%;
+    }
+}
