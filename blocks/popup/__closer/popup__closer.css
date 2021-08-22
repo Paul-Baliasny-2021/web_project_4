@@ -1,4 +1,6 @@
 .popup__closer {
+    background: none;
+    border: none;
     position: absolute;
     top: -50px;
     right: -50px;

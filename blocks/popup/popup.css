@@ -9,7 +9,3 @@
     align-items: center;
     display: none;
 }
-
-.popup_active {
-    display: flex;
-}

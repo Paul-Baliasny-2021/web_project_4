@@ -1,4 +1,7 @@
 .place__like {
+    background: none;
+    border: none;
+    padding: 0;
     opacity: 1;
     transition: opacity .3s linear;
 }
