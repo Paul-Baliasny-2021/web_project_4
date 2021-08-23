@@ -17,7 +17,7 @@
     .popup__closer {
         width: 36px;
         height: 36px;
-        right: -5px;
-        top: -40px;
+        right: 5px;
+        top: -50px;
     }
 }
