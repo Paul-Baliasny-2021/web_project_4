@@ -1,5 +1,7 @@
 .place__like {
-    background: none;
+    width: 21px;
+    height: 19px;
+    background: url(../../../images/heart-plain.svg) transparent no-repeat;
     border: none;
     padding: 0;
     opacity: 1;
