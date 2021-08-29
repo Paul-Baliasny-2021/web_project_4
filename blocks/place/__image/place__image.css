@@ -3,5 +3,6 @@
     height: 78%;
     z-index: 0;
     background-size: cover;
+    background-position: center;
     cursor: pointer;
 }

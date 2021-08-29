@@ -28,8 +28,38 @@ const userName = document.querySelector(".profile__name");
 const userJob = document.querySelector(".profile__about");
 const inputPlaceName = addPlacePopup.querySelector(".popup__input_text_toponym");
 const inputPlaceLink = addPlacePopup.querySelector(".popup__input_text_link");
+
 const formEditProfile = editProfilePopup.querySelector(".popup__form");
 const formAddPlace = addPlacePopup.querySelector(".popup__form");
+
+const initialCards = [{
+        name: "Aspen Ski Resort, Colorado",
+        link: "https://images.unsplash.com/photo-1578451779798-c250e75fd0e1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3334&q=80"
+    },
+    {
+        name: "Matanuska Glacier, Alaska",
+        link: "https://images.unsplash.com/photo-1603017412441-eb5669f87e75?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3334&q=80"
+    },
+    {
+        name: "Ein Gedi Oasis, Israel",
+        link: "https://images.unsplash.com/photo-1464980704090-17359156b2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3450&q=80"
+    },
+    {
+        name: "Sea of Galilee, Israel",
+        link: "https://images.unsplash.com/photo-1608637765750-6b77adacfcac?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=975&q=80"
+    },
+    {
+        name: "Baikal Lake, Russia",
+        link: "https://images.unsplash.com/photo-1501675423372-9bfa95849e62?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1650&q=80"
+    },
+    {
+        name: "Sochi, Akhun Mountain, Russia",
+        link: "https://images.unsplash.com/photo-1602923632045-d29f261735ff?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1620&q=80"
+    }
+];
+
+const templatePlace = document.querySelector("#place-template").content.querySelector(".place");
+const placesSection = document.querySelector(".places");
 
 function togglePopup(popup) {
     popup.classList.toggle("popup_active");
@@ -59,7 +89,38 @@ addCardCloseButton.addEventListener("click", () => {
 
 picturePopupCloseButton.addEventListener("click", () => {
     togglePopup(picturePopup);
-})
+});
+
+
+
+function createPlaceCard(placeInfo) {
+    const place = templatePlace.cloneNode(true);
+    const placeTitle = place.querySelector(".place__title");
+    const placeImage = place.querySelector(".place__image");
+    const deleteButton = place.querySelector(".place__delete");
+    const likeButton = place.querySelector(".place__like");
+    placeTitle.textContent = placeInfo.name;
+    placeImage.style.backgroundImage = `url(${placeInfo.link})`;
+
+    likeButton.addEventListener("click", () => {
+        likeButton.classList.toggle("place__like_active");
+    });
+
+    deleteButton.addEventListener("click", () => {
+        place.remove();
+    });
+
+    placeImage.addEventListener("click", () => {
+        picturePopupImage.src = placeInfo.link;
+        picturePopupImage.alt = placeInfo.name;
+        picturePopupTitle.textContent = placeInfo.name;
+        togglePopup(picturePopup);
+    });
+
+    placesSection.prepend(place);
+};
+initialCards.forEach(createPlaceCard);
+// forms
 
 formEditProfile.addEventListener("submit", function(evt) {
     evt.preventDefault();
@@ -75,89 +136,3 @@ formAddPlace.addEventListener("submit", function(evt) {
     createPlaceCard({ name: inputPlaceName.value, link: inputPlaceLink.value });
     togglePopup(addPlacePopup);
 });
-
-const initialCards = [{
-        name: "Yosemite Valley",
-        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-    },
-    {
-        name: "Lake Louise",
-        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-    },
-    {
-        name: "Bald Mountains",
-        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-    },
-    {
-        name: "Latemar",
-        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-    },
-    {
-        name: "Vanoise National Park",
-        link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-    },
-    {
-        name: "Lago di Braies",
-        link: "https://code.s3.yandex.net/web-code/lago.jpg"
-    }
-];
-
-const templatePlace = document.querySelector("#place-template").content.querySelector(".place");
-const placesSection = document.querySelector(".places");
-
-
-
-function initialPlaces(placeInfo) {
-    const place = templatePlace.cloneNode(true);
-    const placeTitle = place.querySelector(".place__title");
-    const placeImage = place.querySelector(".place__image");
-    const deleteButton = place.querySelector(".place__delete");
-    const likeButton = place.querySelector(".place__like");
-
-    placeTitle.textContent = placeInfo.name;
-    placeImage.style.backgroundImage = `url(${placeInfo.link})`;
-
-
-    likeButton.addEventListener("click", () => {
-        likeButton.classList.toggle("place__like_clicked");
-    });
-
-    deleteButton.addEventListener("click", () => {
-        place.remove();
-    });
-
-    placeImage.addEventListener("click", () => {
-        picturePopupImage.src = placeInfo.link;
-        picturePopupTitle.textContent = placeInfo.name;
-        togglePopup(picturePopup);
-    });
-    placesSection.append(place);
-};
-
-initialCards.forEach(initialPlaces);
-
-function createPlaceCard(placeInfo) {
-    const place = templatePlace.cloneNode(true);
-    const placeTitle = place.querySelector(".place__title");
-    const placeImage = place.querySelector(".place__image");
-    const deleteButton = place.querySelector(".place__delete");
-    const likeButton = place.querySelector(".place__like");
-    placeTitle.textContent = placeInfo.name;
-    placeImage.style.backgroundImage = `url(${placeInfo.link})`;
-
-    likeButton.addEventListener("click", () => {
-        likeButton.classList.toggle("place__like_clicked");
-    });
-
-    deleteButton.addEventListener("click", () => {
-        place.remove();
-    });
-
-    placeImage.addEventListener("click", () => {
-        picturePopupImage.src = placeInfo.link;
-        picturePopupTitle.textContent = placeInfo.name;
-        togglePopup(picturePopup);
-    });
-
-    placesSection.prepend(place);
-};
