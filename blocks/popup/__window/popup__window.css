@@ -2,7 +2,7 @@
     position: relative;
     background-color: white;
     border-radius: 10px;
-    min-width: 430px;
+    width: 430px;
     color: black;
     display: flex;
     flex-direction: column;
@@ -12,6 +12,6 @@
 
 @media screen and (max-width: 720px) {
     .popup__window {
-        min-width: 90%;
+        width: 90%;
     }
 }

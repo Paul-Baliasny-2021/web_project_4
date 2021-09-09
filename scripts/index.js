@@ -3,6 +3,10 @@
 const editProfilePopup = document.querySelector(".popup_type_edit");
 const addPlacePopup = document.querySelector(".popup_type_add");
 const picturePopup = document.querySelector(".popup_type_picture");
+const editModal = editProfilePopup.querySelector(".popup__window");
+const addModal = addPlacePopup.querySelector(".popup__window");
+const pictureModal = picturePopup.querySelector(".popup__pic-container");
+
 
 // pop-up opening buttons
 
@@ -14,6 +18,7 @@ const addButton = document.querySelector(".profile__add-button");
 const editProfileCloseButton = editProfilePopup.querySelector(".popup__closer");
 const addCardCloseButton = addPlacePopup.querySelector(".popup__closer");
 const picturePopupCloseButton = picturePopup.querySelector(".popup__closer");
+
 
 // pop-up image
 
@@ -63,35 +68,83 @@ const placesSection = document.querySelector(".places");
 
 function togglePopup(popup) {
     popup.classList.toggle("popup_active");
-}
+};
+
+function closePopup(popup) {
+    popup.classList.remove("popup_active");
+};
+
 // open buttons
 
 editButton.addEventListener("click", function() {
     togglePopup(editProfilePopup);
     inputName.value = userName.textContent;
     inputJob.value = userJob.textContent;
-})
+
+});
 
 addButton.addEventListener("click", function() {
     formAddPlace.reset();
     togglePopup(addPlacePopup);
 });
 
-// close buttons
+// close buttons and other closing options for popups
 
 editProfileCloseButton.addEventListener("click", () => {
     togglePopup(editProfilePopup);
+});
+
+editProfilePopup.addEventListener("click", function() {
+    closePopup(editProfilePopup);
+});
+
+editModal.addEventListener("click", function(evt) {
+    evt.stopPropagation();
+});
+
+document.addEventListener("keydown", function(evt) {
+    if (evt.key === "Escape") {
+        closePopup(editProfilePopup);
+    }
 });
 
 addCardCloseButton.addEventListener("click", () => {
     togglePopup(addPlacePopup);
 });
 
+addPlacePopup.addEventListener("click", function() {
+    closePopup(addPlacePopup);
+});
+
+addModal.addEventListener("click", function(evt) {
+    evt.stopPropagation();
+});
+
+document.addEventListener("keydown", function(evt) {
+    if (evt.key === "Escape") {
+        closePopup(addPlacePopup);
+    }
+});
+
 picturePopupCloseButton.addEventListener("click", () => {
     togglePopup(picturePopup);
 });
 
+picturePopup.addEventListener("click", function() {
+    closePopup(picturePopup);
+});
 
+pictureModal.addEventListener("click", function(evt) {
+    evt.stopPropagation();
+});
+
+document.addEventListener("keydown", function(evt) {
+    if (evt.key === "Escape") {
+        closePopup(picturePopup);
+    }
+});
+
+// place cards generating
 
 function createPlaceCard(placeInfo) {
     const place = templatePlace.cloneNode(true);
@@ -99,6 +152,7 @@ function createPlaceCard(placeInfo) {
     const placeImage = place.querySelector(".place__image");
     const deleteButton = place.querySelector(".place__delete");
     const likeButton = place.querySelector(".place__like");
+
     placeTitle.textContent = placeInfo.name;
     placeImage.style.backgroundImage = `url(${placeInfo.link})`;
 
@@ -120,6 +174,7 @@ function createPlaceCard(placeInfo) {
     placesSection.prepend(place);
 };
 initialCards.forEach(createPlaceCard);
+
 // forms
 
 formEditProfile.addEventListener("submit", function(evt) {
