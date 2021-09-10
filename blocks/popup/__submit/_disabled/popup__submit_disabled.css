@@ -14,6 +14,11 @@
     opacity: 0.2;
 }
 
+.popup__submit_disabled:hover {
+    opacity: 0.2;
+    cursor: auto;
+}
+
 @media screen and (max-width: 720px) {
     .popup__submit_disabled {
         height: 46px;

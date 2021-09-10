@@ -66,18 +66,24 @@ const initialCards = [{
 const templatePlace = document.querySelector("#place-template").content.querySelector(".place");
 const placesSection = document.querySelector(".places");
 
-function togglePopup(popup) {
-    popup.classList.toggle("popup_active");
-};
+function openPopup(popup) {
+    popup.classList.add("popup_active");
+    document.addEventListener("keydown", function(evt) {
+        if (evt.key === "Escape") {
+            closePopup(popup);
+        }
+    });
+}
 
 function closePopup(popup) {
     popup.classList.remove("popup_active");
+    document.removeEventListener("keydown", closePopup);
 };
 
 // open buttons
 
 editButton.addEventListener("click", function() {
-    togglePopup(editProfilePopup);
+    openPopup(editProfilePopup);
     inputName.value = userName.textContent;
     inputJob.value = userJob.textContent;
 
@@ -85,13 +91,13 @@ editButton.addEventListener("click", function() {
 
 addButton.addEventListener("click", function() {
     formAddPlace.reset();
-    togglePopup(addPlacePopup);
+    openPopup(addPlacePopup);
 });
 
 // close buttons and other closing options for popups
 
 editProfileCloseButton.addEventListener("click", () => {
-    togglePopup(editProfilePopup);
+    closePopup(editProfilePopup);
 });
 
 editProfilePopup.addEventListener("click", function() {
@@ -102,14 +108,8 @@ editModal.addEventListener("click", function(evt) {
     evt.stopPropagation();
 });
 
-document.addEventListener("keydown", function(evt) {
-    if (evt.key === "Escape") {
-        closePopup(editProfilePopup);
-    }
-});
-
 addCardCloseButton.addEventListener("click", () => {
-    togglePopup(addPlacePopup);
+    closePopup(addPlacePopup);
 });
 
 addPlacePopup.addEventListener("click", function() {
@@ -120,15 +120,9 @@ addModal.addEventListener("click", function(evt) {
     evt.stopPropagation();
 });
 
-document.addEventListener("keydown", function(evt) {
-    if (evt.key === "Escape") {
-        closePopup(addPlacePopup);
-    }
-});
-
 picturePopupCloseButton.addEventListener("click", () => {
-    togglePopup(picturePopup);
-});
+    closePopup(picturePopup);
+}); // I didn't quite understand your comment on this. This button was previous project's feature, and was not supposed to be changed here :) Sorry
 
 picturePopup.addEventListener("click", function() {
     closePopup(picturePopup);
@@ -138,16 +132,10 @@ pictureModal.addEventListener("click", function(evt) {
     evt.stopPropagation();
 });
 
-document.addEventListener("keydown", function(evt) {
-    if (evt.key === "Escape") {
-        closePopup(picturePopup);
-    }
-});
-
 // place cards generating
 
 function createPlaceCard(placeInfo) {
-    const place = templatePlace.cloneNode(true);
+    let place = templatePlace.cloneNode(true);
     const placeTitle = place.querySelector(".place__title");
     const placeImage = place.querySelector(".place__image");
     const deleteButton = place.querySelector(".place__delete");
@@ -168,7 +156,7 @@ function createPlaceCard(placeInfo) {
         picturePopupImage.src = placeInfo.link;
         picturePopupImage.alt = placeInfo.name;
         picturePopupTitle.textContent = placeInfo.name;
-        togglePopup(picturePopup);
+        openPopup(picturePopup);
     });
 
     placesSection.prepend(place);
@@ -183,11 +171,11 @@ formEditProfile.addEventListener("submit", function(evt) {
     const jobValue = inputJob.value;
     userName.textContent = nameValue;
     userJob.textContent = jobValue;
-    togglePopup(editProfilePopup);
+    closePopup(editProfilePopup);
 });
 
 formAddPlace.addEventListener("submit", function(evt) {
     evt.preventDefault();
     createPlaceCard({ name: inputPlaceName.value, link: inputPlaceLink.value });
-    togglePopup(addPlacePopup);
+    closePopup(addPlacePopup);
 });
