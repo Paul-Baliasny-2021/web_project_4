@@ -3,10 +3,6 @@
 const editProfilePopup = document.querySelector(".popup_type_edit");
 const addPlacePopup = document.querySelector(".popup_type_add");
 const picturePopup = document.querySelector(".popup_type_picture");
-const editModal = editProfilePopup.querySelector(".popup__window");
-const addModal = addPlacePopup.querySelector(".popup__window");
-const pictureModal = picturePopup.querySelector(".popup__pic-container");
-
 
 // pop-up opening buttons
 
@@ -66,21 +62,12 @@ const initialCards = [{
 const templatePlace = document.querySelector("#place-template").content.querySelector(".place");
 const placesSection = document.querySelector(".places");
 
+// open buttons
+
 function openPopup(popup) {
     popup.classList.add("popup_active");
-    document.addEventListener("keydown", function(evt) {
-        if (evt.key === "Escape") {
-            closePopup(popup);
-        }
-    });
-}
-
-function closePopup(popup) {
-    popup.classList.remove("popup_active");
-    document.removeEventListener("keydown", closePopup);
+    document.addEventListener("keydown", closeOnEscape);
 };
-
-// open buttons
 
 editButton.addEventListener("click", function() {
     openPopup(editProfilePopup);
@@ -96,40 +83,54 @@ addButton.addEventListener("click", function() {
 
 // close buttons and other closing options for popups
 
+function closeOnEscape(evt) {
+    if (evt.key === "Escape") {
+        const activePopup = document.querySelector(".popup_active");
+        if (activePopup) {
+            closePopup(activePopup);
+        }
+    }
+};
+
+function closePopup(popup) {
+    popup.classList.remove("popup_active");
+    document.removeEventListener("keydown", closeOnEscape);
+};
+
 editProfileCloseButton.addEventListener("click", () => {
     closePopup(editProfilePopup);
 });
 
-editProfilePopup.addEventListener("click", function() {
-    closePopup(editProfilePopup);
-});
-
-editModal.addEventListener("click", function(evt) {
-    evt.stopPropagation();
+editProfilePopup.addEventListener("click", function(evt) {
+    if (evt.target.classList.contains("popup__window")) {
+        evt.stopPropagation();
+    } else {
+        closePopup(editProfilePopup);
+    }
 });
 
 addCardCloseButton.addEventListener("click", () => {
     closePopup(addPlacePopup);
 });
 
-addPlacePopup.addEventListener("click", function() {
-    closePopup(addPlacePopup);
-});
-
-addModal.addEventListener("click", function(evt) {
-    evt.stopPropagation();
+addPlacePopup.addEventListener("click", function(evt) {
+    if (evt.target.classList.contains("popup__window")) {
+        evt.stopPropagation();
+    } else {
+        closePopup(addPlacePopup);
+    }
 });
 
 picturePopupCloseButton.addEventListener("click", () => {
     closePopup(picturePopup);
-}); // I didn't quite understand your comment on this. This button was previous project's feature, and was not supposed to be changed here :) Sorry
-
-picturePopup.addEventListener("click", function() {
-    closePopup(picturePopup);
 });
 
-pictureModal.addEventListener("click", function(evt) {
-    evt.stopPropagation();
+picturePopup.addEventListener("click", function(evt) {
+    if (evt.target.classList.contains("popup__image")) {
+        evt.stopPropagation();
+    } else {
+        closePopup(picturePopup);
+    }
 });
 
 // place cards generating
