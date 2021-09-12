@@ -15,7 +15,6 @@ const editProfileCloseButton = editProfilePopup.querySelector(".popup__closer");
 const addCardCloseButton = addPlacePopup.querySelector(".popup__closer");
 const picturePopupCloseButton = picturePopup.querySelector(".popup__closer");
 
-
 // pop-up image
 
 const picturePopupImage = picturePopup.querySelector(".popup__image");
@@ -64,9 +63,31 @@ const placesSection = document.querySelector(".places");
 
 // open buttons
 
+
+
+function closeOnEscape(evt) {
+    if (evt.key === "Escape") {
+        const activePopup = document.querySelector(".popup_active");
+        if (activePopup) {
+            closePopup(activePopup);
+        }
+    }
+};
+
+function closePopupOnRemoteClick(evt) {
+    if (evt.target.classList.contains("popup")) {
+        const activePopup = document.querySelector(".popup_active");
+        if (activePopup) {
+            closePopup(activePopup);
+            evt.stopPropagation();
+        }
+    }
+};
+
 function openPopup(popup) {
     popup.classList.add("popup_active");
     document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("click", closePopupOnRemoteClick);
 };
 
 editButton.addEventListener("click", function() {
@@ -83,54 +104,22 @@ addButton.addEventListener("click", function() {
 
 // close buttons and other closing options for popups
 
-function closeOnEscape(evt) {
-    if (evt.key === "Escape") {
-        const activePopup = document.querySelector(".popup_active");
-        if (activePopup) {
-            closePopup(activePopup);
-        }
-    }
-};
-
 function closePopup(popup) {
     popup.classList.remove("popup_active");
     document.removeEventListener("keydown", closeOnEscape);
+    document.removeEventListener("click", closePopupOnRemoteClick);
 };
 
 editProfileCloseButton.addEventListener("click", () => {
     closePopup(editProfilePopup);
 });
 
-editProfilePopup.addEventListener("click", function(evt) {
-    if (evt.target.classList.contains("popup__window")) {
-        evt.stopPropagation();
-    } else {
-        closePopup(editProfilePopup);
-    }
-});
-
 addCardCloseButton.addEventListener("click", () => {
     closePopup(addPlacePopup);
 });
 
-addPlacePopup.addEventListener("click", function(evt) {
-    if (evt.target.classList.contains("popup__window")) {
-        evt.stopPropagation();
-    } else {
-        closePopup(addPlacePopup);
-    }
-});
-
 picturePopupCloseButton.addEventListener("click", () => {
     closePopup(picturePopup);
-});
-
-picturePopup.addEventListener("click", function(evt) {
-    if (evt.target.classList.contains("popup__image")) {
-        evt.stopPropagation();
-    } else {
-        closePopup(picturePopup);
-    }
 });
 
 // place cards generating
