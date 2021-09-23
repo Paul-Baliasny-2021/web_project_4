@@ -4,6 +4,8 @@
 
 * The project uses media query CSS technique to provide horizontal scrollbar-free usage on all modern screens, as well as basic JavaScript code to allow a user their personal profile editing.
 
+* The 7th project dealed with code refactoring including creating JavaScript classes and modules.
+
 * The project will be further developed to provide some more realistic interactivity such as adding place cards and their description, liking other users' posts etc.
 
 url:

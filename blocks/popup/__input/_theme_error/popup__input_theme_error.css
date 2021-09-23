@@ -9,3 +9,10 @@
     font-size: 14px;
     line-height: 17px;
 }
+
+@media screen and (max-width: 720px) {
+    .popup__input_theme_error {
+        max-width: 238px;
+        margin-left: 22px;
+    }
+}

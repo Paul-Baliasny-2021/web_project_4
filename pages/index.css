@@ -35,5 +35,6 @@
 @import url(../blocks/popup/__submit/_disabled/popup__submit_disabled.css);
 @import url(../blocks/popup/__closer/popup__closer.css);
 @import url(../blocks/popup/__x/popup__x.css);
+@import url(../blocks/popup/__error-message/popup__error-message.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
