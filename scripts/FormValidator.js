@@ -35,8 +35,10 @@ class FormValidator {
     _toggleButtonState(inputs, formSubmitButton) {
         if (this._hasInvalidInput(inputs)) {
             formSubmitButton.classList.add(this._settings.inactiveButtonClass);
+            formSubmitButton.disabled = true;
         } else {
             formSubmitButton.classList.remove(this._settings.inactiveButtonClass);
+            formSubmitButton.disabled = false;
         }
     };
 
@@ -61,7 +63,5 @@ const settings = {
     inputErrorClass: "popup__input_theme_error",
     errorClass: "popup__error-message",
 };
-
-const formElement = document.querySelector(".popup__form");
 
 export { FormValidator };

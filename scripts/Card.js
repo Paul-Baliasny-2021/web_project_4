@@ -1,20 +1,19 @@
 import { picturePopup, picturePopupImage, picturePopupTitle, openPopup } from "./utils.js";
 
 export class Card {
-    constructor({ name, link }, templatePlaceSelector) {
+    constructor({ name, link }) {
         this._name = name;
         this._link = link;
-        this._templatePlaceSelector = templatePlaceSelector;
         this._templatePlace = document.querySelector("#place-template").content.querySelector(".place");
     }
-    _likeButtonHandler() {
+    _handleLikeButton() {
         const likeButton = this._place.querySelector(".place__like");
         likeButton.addEventListener("click", () => {
             likeButton.classList.toggle("place__like_active");
         });
     }
 
-    _deleteButtonHandler = () => {
+    _handleDeleteButton = () => {
         const deleteButton = this._place.querySelector(".place__delete");
         deleteButton.addEventListener("click", () => {
             this._place.remove();
@@ -33,14 +32,14 @@ export class Card {
 
 
 
-    getCardElement = () => {
+    createCardElement = () => {
         this._place = this._templatePlace.cloneNode(true);
         const placeTitle = this._place.querySelector(".place__title");
         const placeImage = this._place.querySelector(".place__image");
         placeTitle.textContent = this._name;
         placeImage.style.backgroundImage = `url(${this._link})`;
-        this._likeButtonHandler();
-        this._deleteButtonHandler();
+        this._handleLikeButton();
+        this._handleDeleteButton();
         this._openFullViewImage();
         return this._place;
     }
