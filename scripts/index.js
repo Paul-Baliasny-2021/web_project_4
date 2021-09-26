@@ -100,7 +100,6 @@ picturePopupCloseButton.addEventListener("click", () => {
 const createPlaceCard = (data) => {
     const placesSection = document.querySelector(".places");
     const place = new Card(data, templatePlace);
-    // console.log(place.getCardElement())
     placesSection.prepend(place.createCardElement());
 }
 

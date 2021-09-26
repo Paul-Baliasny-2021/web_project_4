@@ -6,21 +6,22 @@ export class Card {
         this._link = link;
         this._templatePlace = document.querySelector("#place-template").content.querySelector(".place");
     }
-    _handleLikeButton() {
+    _addLikeButtonToggler() {
         const likeButton = this._place.querySelector(".place__like");
         likeButton.addEventListener("click", () => {
             likeButton.classList.toggle("place__like_active");
         });
     }
 
-    _handleDeleteButton = () => {
+    _addDeleteButtonHandler = () => {
         const deleteButton = this._place.querySelector(".place__delete");
         deleteButton.addEventListener("click", () => {
             this._place.remove();
+            this._place = null;
         });
     }
 
-    _openFullViewImage = () => {
+    _addFullImageOpener = () => {
         const placeImage = this._place.querySelector(".place__image");
         placeImage.addEventListener("click", () => {
             picturePopupImage.src = this._link;
@@ -38,9 +39,9 @@ export class Card {
         const placeImage = this._place.querySelector(".place__image");
         placeTitle.textContent = this._name;
         placeImage.style.backgroundImage = `url(${this._link})`;
-        this._handleLikeButton();
-        this._handleDeleteButton();
-        this._openFullViewImage();
+        this._addLikeButtonToggler();
+        this._addDeleteButtonHandler();
+        this._addFullImageOpener();
         return this._place;
     }
 }
