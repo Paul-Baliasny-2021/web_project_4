@@ -12,13 +12,9 @@ export class Popup {
 
 
     _closePopupOnRemoteClick = (evt) => {
-
         if (evt.target.classList.contains("popup")) {
-            const activePopup = document.querySelector(".popup_active");
-            if (activePopup) {
-                this.close(activePopup);
-                evt.stopPropagation();
-            }
+            this.close();
+            evt.stopPropagation();
         }
     };
 
