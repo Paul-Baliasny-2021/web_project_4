@@ -8,7 +8,6 @@ export class PopupWithForm extends Popup {
         this._submitButton = this._popupElement.querySelector(".popup__submit");
     }
     _renderSaving = (isUploading) => {
-
         if (isUploading) {
             this._submitButton.textContent = "Save";
         } else {
