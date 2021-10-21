@@ -15,7 +15,7 @@
     <main class="main-content">
         <section class="profile">
             <button class="profile__avatar-container">
-              <img src="<%=require('./images/image.jpg')%>" alt="User's photo" class="profile__image">
+              <img src="<%=require('./images/VectorPen.svg')%>" alt="User's photo" class="profile__image">
                 <div class="profile__avatar-overlay">
                  <img src="<%=require('./images/VectorPen.svg')%>" alt="pen" class="profile__avatar-pen">
                 </div>
@@ -55,8 +55,8 @@
                 <h2 class="popup__title">Change profile picture</h2>
                 <button type="button" class="popup__closer"><img src="<%=require('./images/CloseIcon.svg')%>" alt="Closing cross" class="popup__x"></button>
                 <form class="popup__form popup__form_type_avatar" name="avatar-info">
-                    <input id="url-input" class="popup__input popup__input_text_link" type="url" name="avatar" placeholder="https://somewebsite.com/someimage.jpg" required>
-                    <span id="url-input-error" class="popup__error-message"></span>
+                    <input id="image-url-input" class="popup__input popup__input_text_link" type="url" name="avatar" placeholder="https://somewebsite.com/someimage.jpg" required>
+                    <span id="image-url-input-error" class="popup__error-message"></span>
                     <button type="submit" class="popup__submit" disabled></button>
                 </form>
             </div>
