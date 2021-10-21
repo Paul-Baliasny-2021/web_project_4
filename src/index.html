@@ -14,7 +14,12 @@
     </header>
     <main class="main-content">
         <section class="profile">
-            <img src="<%=require('./images/image.jpg')%>" alt="User's photo" class="profile__image">
+            <button class="profile__avatar-container">
+              <img src="<%=require('./images/image.jpg')%>" alt="User's photo" class="profile__image">
+                <div class="profile__avatar-overlay">
+                 <img src="<%=require('./images/VectorPen.svg')%>" alt="pen" class="profile__avatar-pen">
+                </div>
+            </button>
             <div class="profile__info">
                 <div class="profile__name-line">
                     <h1 class="profile__name">Jacques Cousteau</h1>
@@ -41,7 +46,18 @@
                     <span id="name-input-error" class="popup__error-message"></span>
                     <input id="profession-input" class="popup__input popup__input_text_profession" type="text" name="profession" placeholder="Explorer" minlength="2" maxlength="200" required>
                     <span id="profession-input-error" class="popup__error-message"></span>
-                    <button type="submit" class="popup__submit" disabled>Save</button>
+                    <button type="submit" class="popup__submit" disabled></button>
+                </form>
+            </div>
+        </section>
+        <section class="popup popup_type_avatar">
+            <div class="popup__window">
+                <h2 class="popup__title">Change profile picture</h2>
+                <button type="button" class="popup__closer"><img src="<%=require('./images/CloseIcon.svg')%>" alt="Closing cross" class="popup__x"></button>
+                <form class="popup__form popup__form_type_avatar" name="avatar-info">
+                    <input id="url-input" class="popup__input popup__input_text_link" type="url" name="avatar" placeholder="https://somewebsite.com/someimage.jpg" required>
+                    <span id="url-input-error" class="popup__error-message"></span>
+                    <button type="submit" class="popup__submit" disabled></button>
                 </form>
             </div>
         </section>
@@ -50,11 +66,20 @@
                 <h2 class="popup__title">New place</h2>
                 <button type="button" class="popup__closer"><img src="<%=require('./images/CloseIcon.svg')%>" alt="Closing cross" class="popup__x"></button>
                 <form class="popup__form popup__form_type_add" name="place-info">
-                    <input id="toponym-input" class="popup__input popup__input_text_toponym" type="text" name="toponym" placeholder="Title" minlength="1" maxlength="30" required>
+                    <input id="toponym-input" class="popup__input popup__input_text_toponym" type="text" name="name" placeholder="Title" minlength="1" maxlength="30" required>
                     <span id="toponym-input-error" class="popup__error-message"></span>
-                    <input id="url-input" class="popup__input popup__input_text_link" type="url" name="image-link" placeholder="Image URL" required>
+                    <input id="url-input" class="popup__input popup__input_text_link" type="url" name="link" placeholder="Image URL" required>
                     <span id="url-input-error" class="popup__error-message"></span>
-                    <button type="submit" class="popup__submit" disabled>Create</button>
+                    <button type="submit" class="popup__submit" disabled></button>
+                </form>
+            </div>
+        </section>
+        <section class="popup popup_type_sure">
+            <div class="popup__window">
+                <h2 class="popup__title">Are you sure?</h2>
+                <button type="button" class="popup__closer"><img src="<%=require('./images/CloseIcon.svg')%>" alt="Closing cross" class="popup__x"></button>
+                <form class="popup__form popup__form_type_sure" name="delete">
+                    <button type="submit" class="popup__submit"></button>
                 </form>
             </div>
         </section>
@@ -75,7 +100,10 @@
             <div class="place__image" style=""></div>
             <div class="place__description">
               <h2 class="place__title"></h2>
-              <button type="button" class="place__like place__like_active"></button>
+                <div class="place__like-box">
+                  <button type="button" class="place__like place__like_active"></button>
+                  <span class="place__like-counter"></span>
+                </div>
              </div>
         </article>
     </template>
