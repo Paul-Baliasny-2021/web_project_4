@@ -64,6 +64,7 @@ const editProfilePopup = new PopupWithForm(".popup_type_edit", (userData) => {
     api.editUserInfo(userData)
         .then(res => {
             userInfo.setUserInfo(res);
+            editProfilePopup.close()
         })
 });
 
@@ -83,6 +84,7 @@ const editAvatarPopup = new PopupWithForm(".popup_type_avatar", (link) => {
     api.uploadUserAvatar(link)
         .then(res => {
             userInfo.setUserInfo(res);
+            editAvatarPopup.close()
         })
 
 })
@@ -135,7 +137,8 @@ function createCard(data) {
 const addPlacePopup = new PopupWithForm(".popup_type_add", (data) => {
     api.postNewCard(data)
         .then(res => {
-            createCard(res)
+            createCard(res);
+            addPlacePopup.close()
         })
 })
 
