@@ -1,12 +1,12 @@
-import "../../pages/index.css";
-import { Section } from "../components/Section.js";
-import { FormValidator } from "../components/FormValidator.js";
-import { Card } from "../components/Card.js";
-import { PopupWithImage } from "../components/PopupWithImage.js";
-import { PopupWithForm } from "../components/PopupWithForm.js";
-import { UserInfo } from "../components/UserInfo.js";
-import { api } from "../components/API.js"
-import { PopupWithSubmit } from "../components/PopupWithSubmit.js";
+import "./index.css";
+import { Section } from "../scripts/components/Section.js";
+import { FormValidator } from "../scripts/components/FormValidator.js";
+import { Card } from "../scripts/components/Card.js";
+import { PopupWithImage } from "../scripts/components/PopupWithImage.js";
+import { PopupWithForm } from "../scripts/components/PopupWithForm.js";
+import { UserInfo } from "../scripts/components/UserInfo.js";
+import { api } from "../scripts/components/API.js"
+import { PopupWithSubmit } from "../scripts/components/PopupWithSubmit.js";
 import {
     settings,
     editButton,
@@ -19,7 +19,7 @@ import {
     inputName,
     inputJob,
     placeCardContainer,
-} from "../utils/constants.js";
+} from "../scripts/utils/constants.js";
 
 // Card Deletion Confirmation Modal
 
